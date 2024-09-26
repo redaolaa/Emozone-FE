@@ -21,7 +21,8 @@ function ShowPost({ user }: { user: null | IUser }) {
     fetchPost();
   }, [postId]);
 
-  async function deletePost(e: SyntheticEvent) {
+  async function deletePost(postId: string) {
+ 
     try {
       const token = localStorage.getItem("token");
       await axios.delete(`http://localhost:8000/api/posts/${postId}`, {
@@ -37,10 +38,10 @@ function ShowPost({ user }: { user: null | IUser }) {
     <section className="section">
       <div className="container">
         <div className="columns is-multiline">
-          {post && <Post {...post} />}
+          {post && <Post {...post} onDelete= {deletePost} />}
         </div>
         {post && post.user === user?._id && (
-          <button onClick={deletePost} className="button is-danger">
+          <button onClick={() =>deletePost(postId!)} className="button is-danger">
             Delete
           </button>
         )}

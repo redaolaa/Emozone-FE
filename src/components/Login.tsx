@@ -1,6 +1,6 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login({ fetchUser }: { fetchUser: Function }) {
   const navigate = useNavigate();
@@ -71,6 +71,14 @@ function Login({ fetchUser }: { fetchUser: Function }) {
             Submit
           </button>
         </form>
+        <div className="has-text-centered" style={{ marginTop: '20px' }}>
+          <p>
+            Don't have an account?{" "}
+            <Link to="/signup" className="has-text-link">
+              Sign up here!
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -9,18 +9,14 @@ interface NavbarProps {
 
 function Navbar({ user, setUser }: NavbarProps) {
   const navigate = useNavigate();
-  const [selectedZone, setSelectedZone]= useState<string>("");
-console.log(selectedZone)
+
   function logout() {
     localStorage.removeItem("token");
     setUser(null);
     navigate("/");
   }
-  const handleZoneSelection = (zone: string) => {
-    setSelectedZone(zone);
-    console.log(`Selected zone:${zone}`)
 
-  };
+  console.log("user", user);
 
   return (
     <>
@@ -31,7 +27,6 @@ console.log(selectedZone)
               <Link to="/" className="navbar-item">
                 Home
               </Link>
-           
               {!user && (
                 <Link to="/signup" className="navbar-item">
                   Signup
@@ -42,32 +37,28 @@ console.log(selectedZone)
                   Login
                 </Link>
               )}
-                 <Link to="/posts" className="navbar-item">
+              <Link to="/posts" className="navbar-item">
                 All Tools
               </Link>
-                {!user && ( <Link to="/createPost" className="navbar-item">
-                Create Tools
-              </Link>
-                )}
-           
-           {user && (
-                <div className="navbar-item has-dropdown is-hoverable">
-                  <a className="navbar-link">Select Zone</a>
-                  <div className="navbar-dropdown">
-                    {["Blue", "Green", "Yellow", "Red"].map((zone) => (
-                      <a key={zone} className="navbar-item" onClick={() => handleZoneSelection(zone)}>
-                        {zone} Zone
-                      </a>
-                    ))}
-                  </div>
-                </div>
+              {user && (
+                <Link to="/createPost" className="navbar-item">
+                  Create Tools
+                </Link>
               )}
-
+              {user && (
+                <>
+                <Link to="/blue-zone" className="navbar-item">
+                  Blue Zone
+                </Link> 
+                <Link to="/red-zone" className="navbar-item">Red Zone</Link>
+                <Link to="/yellow-zone" className="navbar-item">Yellow Zone</Link>
+                 <Link to="/green-zone" className="navbar-item">Green Zone</Link> 
+                 </>
+              )}
               {user && (
                 <button
                   onClick={logout}
-                  className="button navbar-item is-ghost"
-                >
+                  className="button navbar-item is-ghost">
                   Logout
                 </button>
               )}

@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 } */
+.has-text-blue {
+  color: #3b82f6; /* Blue */
+}
+
+.has-text-green {
+  color: #22c55e; /* Green */
+}
+
+.has-text-yellow {
+  color: #fbbf24; /* Yellow */
+}
+
+.has-text-red {
+  color: #ef4444; /* Red */
+}

@@ -1,3 +1,5 @@
+import { SyntheticEvent } from "react";
+
 export interface IPost{
     _id: string;
     name: string;

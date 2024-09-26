@@ -59,19 +59,23 @@ function CreatePost({user}: {user:null | IUser}) {
               )}
             </div>
           </div>
-
           <div className="field">
             <label htmlFor="zone" className="label">
               Zone
             </label>
             <div className="control">
-              <input
-                type="text"
+              <select
                 className="input"
                 name="zone"
                 value={formData.zone}
                 onChange={handleChange}
-              />
+              >
+                <option value="">Select a zone</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="red">Red</option>
+                <option value="yellow">Yellow</option>
+              </select>
               {errorData.zone && (
                 <small className="has-text-danger">{errorData.zone}</small>
               )}
