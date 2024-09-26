@@ -48,7 +48,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login fetchUser={fetchUser} />} />
 
-        <Route path="/posts" element={<PostList />} />
+        <Route path="/posts" element={<PostList user={user} />} />
         <Route path="/createPost" element={<CreatePost user={user} />} />
         <Route path="/edit/:id" element={<EditPost user={null} />} />
         <Route path="/post/:postId" element={<ShowPost user={user} />} />
