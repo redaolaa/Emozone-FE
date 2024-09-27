@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import "../App.css";
 import { FaPen } from "react-icons/fa";
+import { baseUrl } from "../config";
 
 
 interface PostProps extends IPost {
@@ -17,7 +18,7 @@ function Post({ _id, name, image, zone, user, onDelete }: PostProps) {
     console.log(`Deleting post with ID: ${_id}`); 
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.delete(`/api/posts/${_id}`, {
+      const response = await axios.delete(`${baseUrl}/posts/${_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(`Response from delete API: `, response.data);

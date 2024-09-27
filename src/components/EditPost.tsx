@@ -3,6 +3,8 @@ import axios from "axios";
 import { IUser } from "../interfaces/user"; 
 import { useNavigate, useParams } from "react-router-dom";
 import { IPost } from "../interfaces/post"; 
+import { baseUrl } from "../config";
+
 
 function EditPost({ user }: { user: null | IUser }) {
     const { id } = useParams<{ id: string }>(); 
@@ -17,7 +19,7 @@ function EditPost({ user }: { user: null | IUser }) {
         async function fetchPost() {
             console.log(`Fetching post with ID: ${id}`);
             try {
-                const response = await axios.get(`/api/posts/${id}`);
+                const response = await axios.get(`${baseUrl}/posts/${id}`);
                 console.log(`Post data fetched: `, response.data);
                 setFormData(response.data); 
                 setLoading(false);
@@ -38,7 +40,7 @@ function EditPost({ user }: { user: null | IUser }) {
         if (formData) {
             try {
                 const token = localStorage.getItem("token");
-                await axios.put(`/api/posts/${id}`, formData, {
+                await axios.put(`${baseUrl}/posts/${id}`, formData, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 

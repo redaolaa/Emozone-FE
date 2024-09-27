@@ -13,6 +13,8 @@ import YellowZone from "./components/YellowZone";
 import RedZone from "./components/RedZone";
 import GreenZone from "./components/GreenZone";
 import EditPost from './components/EditPost';
+import { baseUrl } from "./config";
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -21,7 +23,7 @@ function App() {
     console.log("fetced user ");
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:8000/api/user", {
+      const response = await axios.get(`${baseUrl}/user`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("response.data", response);

@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { baseUrl } from "../config";
 
 function Login({ fetchUser }: { fetchUser: Function }) {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Login({ fetchUser }: { fetchUser: Function }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/login", formData);
+      const response = await axios.post(`${baseUrl}/login`, formData);
       // save the authorisation token that the API sent us in the browsers memory
       // this will allow us to retrieve it for subsequent requests when we need to send the token
       localStorage.setItem("token", response.data.token);

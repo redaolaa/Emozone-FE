@@ -5,6 +5,8 @@ import Post from "./Posts";
 import axios from "axios";
 import { IUser } from "../interfaces/user";
 import yellowZoneImage from "../assets/yellowpic.png"
+import { baseUrl } from "../config";
+
 function YellowZone({user}: {user:null | IUser}) {
     
 
@@ -17,7 +19,7 @@ function YellowZone({user}: {user:null | IUser}) {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await axios.get("/api/posts");
+        const response = await axios.get(`${baseUrl}/posts`);
         console.log("Fetched posts data: ", response.data);
         setPosts(response.data);
       } catch (error) {

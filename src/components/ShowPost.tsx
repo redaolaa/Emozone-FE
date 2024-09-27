@@ -4,7 +4,7 @@ import {IPost} from "../interfaces/post"
 import Post from "./Posts";
 import { IUser } from "../interfaces/user";
 import axios from "axios";
-
+import { baseUrl } from "../config";
 
 function ShowPost({ user }: { user: null | IUser }) {
   console.log("USER: ", user);
@@ -14,7 +14,7 @@ function ShowPost({ user }: { user: null | IUser }) {
 
   useEffect(() => {
     async function fetchPost() {
-      const response = await fetch(`/api/posts/${postId}`);
+      const response = await fetch(`${baseUrl}/posts/${postId}`);
       const postData = await response.json();
       setPost(postData);
     }
@@ -25,7 +25,7 @@ function ShowPost({ user }: { user: null | IUser }) {
   async function deletePost(postId: string) {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`/api/posts/${postId}`, {
+      await axios.delete(`${baseUrl}/posts/${postId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/posts");

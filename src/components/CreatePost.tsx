@@ -2,6 +2,7 @@ import { useState, SyntheticEvent } from "react";
 import axios from "axios";
 import { IUser } from "../interfaces/user";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../config";
 
 function CreatePost({user}: {user:null | IUser}) {
   console.log("USER,", user)
@@ -16,7 +17,7 @@ function CreatePost({user}: {user:null | IUser}) {
     try {
       const token = localStorage.getItem("token");
       const response: any = await axios.post(
-        "/api/posts", formData,
+        `${baseUrl}/posts`, formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

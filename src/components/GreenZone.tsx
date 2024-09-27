@@ -5,6 +5,7 @@ import Post from "./Posts";
 import axios from "axios";
 import { IUser } from "../interfaces/user";
 import greenZoneImage from "../assets/greenpic.png"
+import { baseUrl } from "../config";
 
 function GreenZone({user}: {user:null | IUser}) {
     console.log("USER,", user)
@@ -18,7 +19,7 @@ const navigate = useNavigate()
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await axios.get("/api/posts");
+        const response = await axios.get(`${baseUrl}/posts`);
         console.log("Fetched posts data: ", response.data);
         setPosts(response.data);
       } catch (error) {

@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { baseUrl } from "../config";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ function Signup() {
 
     try {
       // use axios to make a post request. We don't have to do response.json() with axios (if does it for us)
-      const response = await axios.post("/api/signup", formData);
+      const response = await axios.post(`${baseUrl}/signup`, formData);
       console.log(response.data);
       // if we get a successful response, we will take them to the login page
       navigate("/login");

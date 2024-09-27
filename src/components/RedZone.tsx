@@ -5,6 +5,7 @@ import Post from "./Posts";
 import axios from "axios";
 import { IUser } from "../interfaces/user";
 import redZoneImage from "../assets/redpic.png"
+import { baseUrl } from "../config";
 
 function RedZone({user}: {user:null | IUser}) {
     console.log("USER,", user)
@@ -17,7 +18,7 @@ function RedZone({user}: {user:null | IUser}) {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await axios.get("/api/posts");
+        const response = await axios.get(`${baseUrl}/posts`);
         console.log("Fetched posts data: ", response.data);
         setPosts(response.data);
       } catch (error) {
