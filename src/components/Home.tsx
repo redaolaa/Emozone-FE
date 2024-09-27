@@ -86,8 +86,8 @@ function Home() {
                     alt={zone.title}
                     style={{
                       width: "100%",
-                      height: "100%", // Ensure the image fills the container height
-                      objectFit: "cover", // Cover the area while maintaining aspect ratio
+                      height: "100%", 
+                      objectFit: "cover", 
                     }}
                   />
                   <div
