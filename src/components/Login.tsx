@@ -22,10 +22,9 @@ function Login({ fetchUser }: { fetchUser: Function }) {
 
     try {
       const response = await axios.post(`${baseUrl}/login`, formData);
-      // save the authorisation token that the API sent us in the browsers memory
-      // this will allow us to retrieve it for subsequent requests when we need to send the token
+   
       localStorage.setItem("token", response.data.token);
-      fetchUser(); // <-- after we set the token, call the function that checks if we are logged in and sets the UI accordingly
+      fetchUser(); 
       navigate("/");
     } catch (error: any) {
       setErrorMessage(error.response.data.message);
