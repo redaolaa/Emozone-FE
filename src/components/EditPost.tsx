@@ -41,7 +41,6 @@ function EditPost({ user }: { user: null | IUser }) {
                 await axios.put(`/api/posts/${id}`, formData, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
-                console.log(`Response from update API: `, response.data);
 
                 navigate("/posts"); 
             } catch (error: any) {
@@ -69,7 +68,6 @@ function EditPost({ user }: { user: null | IUser }) {
 
 
     console.log("Current User: ", user);
-console.log("Current Post: ", post);
 
     return (
         <div className="section">

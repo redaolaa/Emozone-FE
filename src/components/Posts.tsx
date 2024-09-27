@@ -30,7 +30,6 @@ function Post({ _id, name, image, zone, user, onDelete }: PostProps) {
 
   return (
     <div className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile ">
-      <Link to={`/post/${_id}`}>
         <div className="card " style={{ maxWidth: "250px", margin: "auto" }}>
           <header className=" card-header">
             
@@ -68,12 +67,6 @@ function Post({ _id, name, image, zone, user, onDelete }: PostProps) {
            </>
             )}
             
-
-
-            
-
-
-
             <p className="card-header-title is-size-7">{name}</p>
 
 
@@ -107,7 +100,6 @@ function Post({ _id, name, image, zone, user, onDelete }: PostProps) {
             <div className="content" style={{ fontSize: "0.85rem" }}></div>
           </div>
         </div>
-      </Link>
 
     </div>
   );
