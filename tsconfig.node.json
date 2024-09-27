@@ -5,6 +5,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "composite": true,
+    
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -13,7 +14,7 @@
     "moduleDetection": "force",
    
     "noEmit": true,
-    
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

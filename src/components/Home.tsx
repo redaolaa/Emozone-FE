@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import blueZoneImage from "../assets/bluepic.png";
 import greenZoneImage from "../assets/greenpic.png";
 import yellowZoneImage from "../assets/yellowpic.png";
