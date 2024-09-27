@@ -11,15 +11,18 @@ interface PostProps extends IPost {
 }
 function Post({ _id, name, image, zone, user, onDelete }: PostProps) {
   const navigate = useNavigate();
-  // Function to handle deleting the post
+  
+
   const handleDeletePost = async () => {
+    console.log(`Deleting post with ID: ${_id}`); 
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(`/api/posts/${_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(`Response from delete API: `, response.data);
 
-      onDelete(_id); // Call the onDelete function passed from the parent to remove the post from the UI
+      onDelete(_id); 
     } catch (error) {
       console.error("Error deleting post:", error);
     }
@@ -31,7 +34,7 @@ function Post({ _id, name, image, zone, user, onDelete }: PostProps) {
         <div className="card " style={{ maxWidth: "250px", margin: "auto" }}>
           <header className=" card-header">
             
-            {user && ( 
+            {user &&  ( 
                 <>
                 <button
               className="delete is-large "
@@ -49,15 +52,18 @@ function Post({ _id, name, image, zone, user, onDelete }: PostProps) {
                 position: "absolute",
                 top: "10px",
                 right: "10px",
-                left: "180px",
+                left: "160px",
                 zIndex: 10,
               }}>
-                
+              
               <FaPen 
-       
-               onClick={() => navigate(`/edit/${_id}`)}
-                />
+         
+         onClick={() => {
+          console.log(`Navigating to edit post with ID: ${_id}`); 
+          navigate(`/edit/${_id}`)}}
              
+                />
+            
            </div>
            </>
             )}

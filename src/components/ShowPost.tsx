@@ -1,19 +1,21 @@
 import { useState, useEffect, SyntheticEvent } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { IPost } from "../interfaces/post";
+import { IShowPost } from "../interfaces/post";
+import {IPost} from "../interfaces/post"
 import Post from "./Posts";
 import { IUser } from "../interfaces/user";
 import axios from "axios";
 
+
 function ShowPost({ user }: { user: null | IUser }) {
   console.log("USER: ", user);
-  const [post, setPost] = useState<IPost | null>(null);
+  const [post, setPost] = useState<IShowPost | null>(null);
   const { postId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPost() {
-      const response = await fetch(`api/post/${postId}`);
+      const response = await fetch(`/api/post/${postId}`);
       const postData = await response.json();
       setPost(postData);
     }
@@ -33,11 +35,18 @@ function ShowPost({ user }: { user: null | IUser }) {
     }
   }
 
+  console.log("Current User: ", user);
+console.log("Current Post: ", post);
+
   return (
     <section className="section">
       <div className="container">
         <div className="columns is-multiline">
-          {post && <Post {...post} onDelete={deletePost} />}
+          {post ? (
+             <Post {...post} onDelete={deletePost} />
+          ) : (
+            <p> Loading.. </p>
+          )}
         </div>
         {post && post.user === user?._id && (
           <button

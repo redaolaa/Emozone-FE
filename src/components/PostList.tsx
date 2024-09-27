@@ -3,6 +3,7 @@ import { IPost } from "../interfaces/post";
 import Post from "./Posts";
 import axios from "axios";
 import { IUser } from "../interfaces/user";
+import { useNavigate } from "react-router-dom";
 
 type Posts = IPost[];
 
@@ -11,7 +12,7 @@ function PostList({ user }: { user: null | IUser }) {
   const [error, setError] = useState<string | null>(null);
   console.log(" PostList is rendering");
   console.log(error);
-
+const navigate = useNavigate();
   useEffect(() => {
     async function fetchPosts() {
       try {
@@ -27,14 +28,19 @@ function PostList({ user }: { user: null | IUser }) {
   }, []);
 
   const handleDeletePost = (postId: string) => {
+    console.log(`Post deleted: ${postId}`); 
     setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
   };
 
   if (posts.length === 0) {
     return <div>No posts available.</div>;
   }
+  const handleHomeClick = () => {
+    navigate("/");
+  };
 
   return (
+    <section>
     <div className="columns is-multiline">
       {posts.map((post) => (
         <Post
@@ -43,8 +49,16 @@ function PostList({ user }: { user: null | IUser }) {
           onDelete={handleDeletePost}
           user={user}
         />
+        
       ))}
+      
+     
     </div>
+    <button onClick={handleHomeClick} className="button is-primary">
+        Go to Home
+      </button>
+
+    </section>
   );
 }
 

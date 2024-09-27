@@ -64,9 +64,7 @@ function Home() {
             </p>
           </div>
 
-          <h3 className="subtitle has-text-centered">
-            Today I am feeling in the:
-          </h3>
+       
           <div className="columns is-multiline">
             {zones.map((zone, index) => (
               <div className="column is-one-quarter" key={index}>

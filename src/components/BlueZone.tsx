@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { IPost } from "../interfaces/post";
 import Post from "./Posts";
 import axios from "axios";
@@ -11,6 +12,11 @@ function BlueZone({user}: {user:null | IUser}) {
   const [error, setError] = useState<string | null>(null);
   console.log(" BlueZone is rendering");
   console.log(error);
+  const navigate= useNavigate();
+
+  const handleHomeClick = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     async function fetchPosts() {
@@ -45,6 +51,7 @@ function BlueZone({user}: {user:null | IUser}) {
   return (
     <section className="section">
       <div className="container">
+
       <div className="image-container" style={{ textAlign: 'center', marginBottom: '20px' }}>
                     <img 
                         src={blueZoneImage} 
@@ -56,8 +63,8 @@ function BlueZone({user}: {user:null | IUser}) {
                             boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)' // Optional subtle shadow
                         }} 
                     />
-                </div>
-
+</div>
+        
         <h1 className="title">Blue Zone Tools</h1>
         <div className="columns is-multiline">
           {blueZonePosts &&
@@ -68,6 +75,14 @@ function BlueZone({user}: {user:null | IUser}) {
           {!blueZonePosts?.length && <p>No blue zone posts available.</p>}
         </div>
       </div>
+      <div>
+     
+
+      <br></br>
+      <button onClick={handleHomeClick} className="button is-primary">
+        Go to Home
+      </button>
+    </div>
     </section>
   );
 }

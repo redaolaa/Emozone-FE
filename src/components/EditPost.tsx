@@ -10,11 +10,15 @@ function EditPost({ user }: { user: null | IUser }) {
     const [errorData, setErrorData] = useState({ name: "", zone: "", image: "" });
     const [loading, setLoading] = useState<boolean>(true);
     const navigate = useNavigate();
+
+    
     
     useEffect(() => {
         async function fetchPost() {
+            console.log(`Fetching post with ID: ${id}`);
             try {
                 const response = await axios.get(`/api/posts/${id}`);
+                console.log(`Post data fetched: `, response.data);
                 setFormData(response.data); 
                 setLoading(false);
             } catch (error: any) {
@@ -29,6 +33,7 @@ function EditPost({ user }: { user: null | IUser }) {
 
     async function handleSubmit(e: SyntheticEvent) {
         e.preventDefault();
+        console.log(`Submitting post data: `, formData);
 
         if (formData) {
             try {
@@ -36,6 +41,7 @@ function EditPost({ user }: { user: null | IUser }) {
                 await axios.put(`/api/posts/${id}`, formData, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
+                console.log(`Response from update API: `, response.data);
 
                 navigate("/posts"); 
             } catch (error: any) {
@@ -60,6 +66,10 @@ function EditPost({ user }: { user: null | IUser }) {
     if (!formData) {
         return <div>Error: Post not available.</div>; 
     }
+
+
+    console.log("Current User: ", user);
+console.log("Current Post: ", post);
 
     return (
         <div className="section">

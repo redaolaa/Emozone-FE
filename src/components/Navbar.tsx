@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IUser } from "../interfaces/user";
 import { useState } from "react";
+import "../App.css"
 
 interface NavbarProps {
   user: null | IUser;
@@ -62,8 +63,9 @@ function Navbar({ user, setUser }: NavbarProps) {
                   Logout
                 </button>
               )}
+             
               {user && (
-                <span className="navbar-item ">{`Welcome back ${user.username}`}</span>
+                <span className="navbar-item navbar-welcome">{`Welcome back ${user.username}`}</span>
               )}
             </div>
           </div>

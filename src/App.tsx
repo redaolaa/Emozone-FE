@@ -50,7 +50,7 @@ function App() {
 
         <Route path="/posts" element={<PostList user={user} />} />
         <Route path="/createPost" element={<CreatePost user={user} />} />
-        <Route path="/edit/:id" element={<EditPost user={null} />} />
+        <Route path="/edit/:id" element={<EditPost user={user} />} />
         <Route path="/post/:postId" element={<ShowPost user={user} />} />
         <Route path="/blue-zone" element={<BlueZone user={user} />} />
         <Route path="/red-zone" element={<RedZone user={user} />} />
